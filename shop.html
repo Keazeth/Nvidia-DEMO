@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
 </head>
-<body class="scrollable-page page-shop">
 
+<body class="scrollable-page page-shop">
     <header class="main-header">
         <div class="logo-container" onclick="window.location.href='index.html'">
             <img src="logo.png" alt="Nvidia Logo" class="nvidia-logo">
@@ -17,7 +17,9 @@
         </div>
 
         <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
 
         <nav class="nav-links">
@@ -678,11 +680,9 @@
             <div class="mobile-login-container"></div>
         </nav>
 
-        <div class="header-right-section desktop-only">
-            <div class="user-action">
-                <button id="authBtn" class="login-btn">LOG IN / JOIN</button>
-                <span id="userNameDisplay" class="hidden"></span>
-            </div>
+        <div class="user-action desktop-only">
+            <button id="authBtn" class="login-btn">LOG IN / JOIN</button>
+            <span id="userNameDisplay" class="hidden"></span>
         </div>
     </header>
 

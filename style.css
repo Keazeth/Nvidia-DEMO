@@ -1086,7 +1086,7 @@ body {
 
 /* Desktop verze Mega Menu - Vycentrovaná na střed obrazovky */
 .mega-menu, .mega-menu.industries-menu {
-    position: fixed; /* Fixní pozice vůči oknu prohlížeče */
+    position: fixed;
     top: 70px;       /* Hned pod hlavičkou */
     left: 50%;       /* Start na polovině obrazovky */
     transform: translateX(-50%) translateY(-20px); /* Posun zpět o polovinu šířky = přesný střed */
@@ -1135,18 +1135,22 @@ body {
     }
 
     .mega-menu, .mega-menu.industries-menu {
-        position: static; /* Menu nebude plavat, ale bude součástí seznamu */
+        position: static; /* Na mobilu NESMÍ být fixed */
+        transform: none;  /* Zrušit centrování */
         width: 100%;
         max-width: 100%;
-        transform: none !important; /* Zrušíme centrování */
+        display: none;
         opacity: 1; /* Viditelnost řídí display: none/block */
         visibility: visible;
-        display: none; /* Defaultně skryto */
         background: #111;
         border: none;
         box-shadow: none;
         flex-direction: column;
         padding: 0;
+    }
+
+    .nav-item-wrapper {
+        position: relative; /* Na mobilu potřebujeme relative */
     }
 
     /* Když je wrapper otevřený, zobrazíme menu */
@@ -1948,5 +1952,46 @@ body.page-support {
     }
     .marketplace-title-section h1 {
         font-size: 2rem;
+    }
+}
+
+/* =========================================
+   OPRAVA FOOTERU A VÝŠKY STRÁNKY (MOBIL)
+   ========================================= */
+@media screen and (max-width: 1024px) {
+    
+    /* 1. Povolit stránce růst do nekonečna (zrušit limit 100vh) */
+    html, body {
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-y: visible !important; /* Povolí scrollování dolů */
+    }
+
+    /* 2. Ujistit se, že shop-main kontejner nic neblokuje */
+    .shop-main {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    /* 3. Oprava samotného Footeru - musí mít automatickou výšku */
+    .main-footer {
+        position: relative !important; /* Musí být v toku dokumentu */
+        height: auto !important;       /* Výška podle obsahu */
+        overflow: visible !important;  /* Aby nic neskrýval */
+        padding-bottom: 40px;          /* Místo dole */
+    }
+
+    /* 4. Vynucení poskládání sloupců ve footeru pod sebe */
+    .footer-links-grid, .footer-links-grid1 {
+        display: flex !important;      /* Flexbox je na mobilu bezpečnější pro stacking */
+        flex-direction: column !important;
+        gap: 30px !important;
+        height: auto !important;
+    }
+    
+    /* Ujistíme se, že sloupce mají správnou šířku */
+    .footer-column {
+        width: 100% !important;
+        height: auto !important;
     }
 }
