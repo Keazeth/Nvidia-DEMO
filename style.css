@@ -1,0 +1,1841 @@
+body.scrollable-page {
+    overflow-y: auto; /* Povolí svislý posuvník */
+    height: auto;     /* Výška se přizpůsobí obsahu, nebude jen na velikost okna */
+}
+
+/* Upravíme footer, aby na této stránce nebyl fixnutý přes text, ale byl až úplně dole pod obsahem */
+body.scrollable-page .main-footer {
+    position: relative; 
+    bottom: auto;
+    margin-top: 50px; /* Odstup od obsahu */
+}
+
+
+
+
+/* --- ZÁKLADNÍ NASTAVENÍ --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #000;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* --- HEADER --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.nvidia-logo {
+    width: 35px;
+    height: auto;
+    object-fit: contain;
+    margin-right: 5px;
+}
+.logo-text { font-weight: 900; font-size: 1.2rem; letter-spacing: 1px; }
+
+.nav-links { display: flex; gap: 25px; align-items: center; }
+.nav-item {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+.nav-item:hover { color: #76b900; }
+.separator { color: #555; }
+
+.login-btn {
+    background: #76b900;
+    border: none;
+    padding: 8px 20px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+.login-btn:hover { background: #fff; }
+
+/* Hamburger menu (na PC skryté) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: 0.3s;
+}
+.mobile-login-container { display: none; }
+
+
+/* --- HLAVNÍ SEKCE (HERO) --- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+} /* <-- TADY TI CHYBĚLA UZAVÍRACÍ ZÁVORKA */
+
+/* --- OVERLAY OBRÁZEK --- */
+.overlay-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; 
+    opacity: 0.35; /* Zvýšil jsem trochu viditelnost, 0.15 bylo moc málo */
+    z-index: 0;
+    pointer-events: none; 
+    filter: contrast(110%) brightness(70%);
+}
+
+/* Pozadí (simulace grafiky) */
+.video-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.animated-gradient-bg {
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(118,185,0,0.2) 0%, rgba(0,0,0,1) 60%);
+    animation: moveBg 10s infinite alternate;
+}
+@keyframes moveBg { from { transform: translate(-20%, -20%); } to { transform: translate(0, 0); } }
+
+/* TEXT S EFEKTEM */
+.content-wrapper {
+    position: relative; 
+    z-index: 2; /* Text musí být nejvýše */
+}
+
+.hero-title {
+    font-size: 7vw;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+}
+
+.reveal-text {
+    opacity: 0; 
+    transform: translateY(50px);
+    transition: all 1.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.reveal-text.highlight {
+    background: linear-gradient(90deg, #76b900, #fff, #76b900);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s infinite linear;
+}
+
+.visible { opacity: 1; transform: translateY(0); }
+@keyframes shine { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+.hero-subtitle {
+    margin-top: 20px;
+    letter-spacing: 5px;
+    color: #888;
+    opacity: 0;
+    transition: opacity 1s ease 1s;
+}
+.hero-subtitle.visible { opacity: 1; }
+
+/* --- NOVÝ FOOTER (KOMPLEXNÍ) --- */
+.main-footer {
+    position: relative; /* Už ne absolute! Musí být pod obsahem */
+    background-color: #000;
+    color: #fff;
+    padding: 60px 40px 20px;
+    border-top: 1px solid #333;
+    font-size: 1rem;
+    width: 100%;
+    z-index: 10;
+}
+
+.footer-container {
+    max-width: auto;
+    margin: 0 auto;
+}
+
+/* Mřížka odkazů (3 sloupce) */
+.footer-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333;
+}
+
+.footer-links-grid1{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333;
+}
+
+.footer-column h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+    border-bottom: 1px solid #555; /* Linka pod nadpisem */
+    padding-bottom: 10px;
+    display: inline-block;
+    min-width: 200px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    color: #76b900; /* Zelené odkazy podle obrázku */
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.footer-column a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Interaktivní část (Newsletter + Social) */
+.footer-interactive {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid #333;
+}
+
+.newsletter-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.newsletter-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.newsletter-text {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.subscribe-btn {
+    background-color: #76b900;
+    color: #000;
+    border: none;
+    padding: 8px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.subscribe-btn:hover {
+    background-color: #fff;
+}
+
+.social-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #aaa;
+    transition: 0.3s;
+}
+.social-icons a:hover { color: #fff; }
+.social-icons svg { width: 20px; height: 20px; }
+
+
+/* Spodní část (Logo + Legal) */
+.footer-bottom {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-logo-img {
+    width: 100px; /* Uprav dle potřeby */
+    opacity: 0.8;
+}
+
+.legal-text {
+    color: #888;
+    font-size: 1.25rem;
+}
+
+.legal-text a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 5px;
+}
+.legal-text a:hover { text-decoration: underline; color: #fff; }
+
+.copyright-text {
+    color: #666;
+    font-size: 0.75rem;
+}
+
+/* RESPONZIVITA FOOTERU */
+@media screen and (max-width: 768px) {
+    .footer-links-grid {
+        grid-template-columns: 1fr; /* Na mobilu pod sebe */
+        gap: 20px;
+    }
+    
+    .footer-interactive {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    .social-section {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+.auth-tabs { display: flex; justify-content: space-around; margin-bottom: 20px; }
+.tab-btn {
+    background: none; border: none; color: #666;
+    font-size: 1rem; cursor: pointer; padding-bottom: 5px;
+}
+.tab-btn.active { color: #76b900; border-bottom: 2px solid #76b900; }
+.auth-form { display: none; flex-direction: column; gap: 15px; }
+.auth-form.active-form { display: flex; }
+.auth-form input {
+    padding: 12px; background: #333; border: 1px solid #444; color: white; outline: none;
+}
+.submit-btn {
+    padding: 12px; background: #76b900; border: none; font-weight: bold; cursor: pointer; margin-top: 10px;
+}
+.message { font-size: 0.8rem; margin-top: 10px; min-height: 20px; }
+.hidden { display: none; }
+
+/* --- RESPONZIVITA --- */
+@media screen and (max-width: 768px) {
+    .main-header { padding: 0 20px; }
+    .menu-toggle { display: flex; z-index: 200; position: absolute; right: 20px; top: 25px;}
+    
+    /* Login tlačítko na mobilu vedle hamburgeru */
+    .user-action.desktop-only { display: block; margin-right: 50px; }
+    .login-btn { padding: 5px 10px; font-size: 0.7rem; }
+
+    .nav-links {
+        position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+        background-color: #1a1a1a; flex-direction: column;
+        justify-content: center; transition: 0.4s ease-in-out;
+        z-index: 150; box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    }
+    .nav-links.active { right: 0; }
+    .nav-links .nav-item { font-size: 1.2rem; margin: 15px 0; }
+    .separator { display: none; }
+    .mobile-login-container { display: block; margin-top: 30px; }
+
+    .hero-title { font-size: 12vw; }
+    .hero-subtitle { font-size: 0.9rem; }
+    
+    .main-footer { flex-direction: column; text-align: center; padding-bottom: 20px; }
+    .footer-content { flex-direction: column; gap: 15px; border: none; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { margin-left: 0; }
+    .modal-content { width: 90%; margin: 20% auto; }
+}
+
+/* --- DRIVERS PAGE STYLES (S NOVÝM POZADÍM) --- */
+
+.drivers-page {
+    padding-top: 100px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    position: relative; /* Nutné pro umístění abstraktní záře */
+    overflow: hidden; /* Aby záře nepřetékala ven ze stránky */
+
+    /* KOMPLEXNÍ POZADÍ Z NĚKOLIKA VRSTEV */
+    background:
+        /* Vrstva 1: Jemná šikmá mřížka (zelená) */
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 40px,
+            rgba(118, 185, 0, 0.02) 40px, /* Velmi slabá zelená linka */
+            rgba(118, 185, 0, 0.02) 41px
+        ),
+        /* Vrstva 2: Mřížka v opačném směru (bílá/šedá) */
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 40px,
+            rgba(255, 255, 255, 0.015) 40px, /* Ještě slabší bílá linka */
+            rgba(255, 255, 255, 0.015) 41px
+        ),
+        /* Vrstva 3: Základní hloubkový přechod (tmavý střed, černá okraje) */
+        radial-gradient(at 50% 0%, #1a1a1a 0%, #000000 85%);
+
+    /* Pozadí se nebude hýbat při scrollování - vypadá to moderněji */
+    background-attachment: fixed;
+}
+
+/* PŘIDÁNÍ ABSTRAKTNÍ ZELENÉ ZÁŘE (Pseudo-element) */
+.drivers-page::before {
+    content: '';
+    position: absolute;
+    top: -300px;
+    right: -200px;
+    width: 800px;
+    height: 800px;
+    /* Velká, rozmazaná zelená koule */
+    background: radial-gradient(circle, rgba(118,185,0,0.12) 0%, transparent 70%);
+    filter: blur(100px); /* Silné rozmazání pro měkký efekt */
+    z-index: 0; /* Úplně vespod */
+    opacity: 0.7;
+    /* Jemná animace pulzování */
+    animation: subtleGlow 10s infinite alternate ease-in-out;
+    pointer-events: none; /* Aby přes to šlo klikat */
+}
+
+/* Animace pro záři */
+@keyframes subtleGlow {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+    100% { transform: scale(1.1) translate(-50px, 20px); opacity: 0.8; }
+}
+
+/* DŮLEŽITÉ: ZAJIŠTĚNÍ, ŽE OBSAH JE NAD POZADÍM */
+.drivers-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    position: relative;
+    z-index: 2; /* Obsah musí být vyšší než záře (z-index: 0) */
+}
+
+.drivers-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.drivers-header {
+    margin-bottom: 30px;
+    border-left: 4px solid #76b900;
+    padding-left: 20px;
+}
+
+.drivers-header h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+}
+.drivers-header p { color: #aaa; margin-top: 5px; }
+
+/* GRID LAYOUT - DVA SLOUPCE */
+.drivers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start; /* Aby se sloupce nenatahovaly na výšku */
+}
+
+.grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Mezera mezi boxy pod sebou */
+}
+
+/* VZHLED BOXŮ */
+.panel-box {
+    background: #1a1a1a;
+    padding: 30px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+/* Novinky nemají pozadí kontejneru, jen karet */
+.panel-box-transparent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-box h2, .panel-box-transparent h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* FORMULÁŘ */
+.driver-form .form-group { margin-bottom: 15px; }
+.driver-form label { display: block; margin-bottom: 5px; font-size: 0.85rem; color: #ccc; }
+.driver-form select {
+    width: 100%; padding: 12px; background-color: #000;
+    border: 1px solid #444; color: #fff; outline: none; cursor: pointer;
+}
+.driver-form select:focus { border-color: #76b900; }
+.search-btn {
+    width: 100%; padding: 15px; margin-top: 10px;
+    background-color: #76b900; border: none; color: #000;
+    font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s;
+}
+.search-btn:hover { background-color: #fff; }
+
+/* NOVÉ PRVKY (Linux, Additional, vGPU) */
+.small-text {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.green-link {
+    color: #76b900;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.green-link:hover { text-decoration: underline; color: #fff; }
+
+.driver-links-list {
+    list-style: none;
+    padding: 0;
+}
+.driver-links-list li {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333;
+}
+.driver-links-list li:last-child { border-bottom: none; }
+
+.outline-btn {
+    padding: 10px 25px;
+    background: transparent;
+    border: 2px solid #76b900;
+    color: #76b900;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+.outline-btn:hover {
+    background: #76b900;
+    color: #000;
+}
+
+/* NOVINKY (KARTY) */
+.news-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    display: flex;
+    height: 150px;
+    transition: 0.3s;
+}
+.news-card:hover { border-color: #76b900; }
+.card-image { width: 40%; background-size: cover; background-position: center; }
+.card-content { width: 60%; padding: 15px; display: flex; flex-direction: column; justify-content: center; }
+.tag { font-size: 0.7rem; color: #76b900; font-weight: bold; margin-bottom: 5px; }
+.news-card h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
+.news-card p { font-size: 0.8rem; color: #aaa; margin-bottom: 10px; line-height: 1.3; }
+.read-more { font-size: 0.8rem; color: #fff; text-decoration: none; font-weight: bold; }
+
+/* RESPONZIVITA */
+@media screen and (max-width: 768px) {
+    .drivers-grid { grid-template-columns: 1fr; }
+    .news-card { flex-direction: column; height: auto; }
+    .card-image { width: 100%; height: 150px; }
+    .card-content { width: 100%; }
+}
+
+
+/* --- AUTOMATIC UPDATES PANEL (DRIVERS) --- */
+
+.auto-updates-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px; /* Mezera pod panelem */
+    gap: 30px;
+    flex-wrap: wrap; /* Aby se na mobilech zalomil */
+}
+
+.auto-text {
+    flex: 1; /* Zabere zbylé místo vlevo */
+    min-width: 300px;
+}
+
+.auto-text h2 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.auto-text p {
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.auto-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.btn-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.nvidia-green-btn {
+    background-color: #76b900;
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    font-weight: 800; /* Extra tučné písmo */
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s;
+    white-space: nowrap; /* Aby se text na tlačítku nelámal */
+}
+
+.nvidia-green-btn:hover {
+    background-color: #fff;
+}
+
+/* Responsivita pro mobily */
+@media screen and (max-width: 768px) {
+    .auto-updates-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .auto-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .nvidia-green-btn {
+        width: 100%;
+    }
+}
+
+/* --- OPRAVA MODÁLNÍHO OKNA --- */
+.modal {
+    display: none; /* TOTO JE KLÍČOVÉ - musí být skryté */
+    position: fixed; 
+    z-index: 2000; /* Musí být hodně vysoké číslo, aby bylo nad vším */
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+/* Ujistíme se, že obsah modalu je vycentrovaný */
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 10% auto; /* 10% od vrchu, auto = střed vodorovně */
+    padding: 40px;
+    border: 1px solid #333;
+    width: 350px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(118,185,0,0.2);
+}
+
+
+/* --- INFO MODAL (Demo Popup) --- */
+.info-modal {
+    display: none; /* Skryté ve výchozím stavu */
+    position: fixed;
+    z-index: 3000; /* Nad vším ostatním (i nad Loginem) */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Ztmavení pozadí */
+    backdrop-filter: blur(8px); /* Rozmazání pozadí */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Obsah okna */
+.info-modal-content {
+    background: #1a1a1a;
+    border: 1px solid #76b900; /* Zelený rámeček */
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(118, 185, 0, 0.2);
+    position: relative;
+    
+    /* Animace "vlití" */
+    animation: pourIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Definice animace */
+@keyframes pourIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px); /* Začíná menší a dole */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0); /* Skončí normálně */
+    }
+}
+
+/* Ikona */
+.info-icon svg {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.info-modal-content h2 {
+    color: #fff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.info-modal-content p {
+    color: #ccc;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+/* Tlačítko Rozumím */
+.info-ok-btn {
+    background-color: #76b900;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.info-ok-btn:hover {
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(118, 185, 0, 0.6);
+}
+
+/* Křížek pro zavření */
+.info-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.info-close-btn:hover { color: #fff; }
+
+/* Aktivní třída pro JS (flex display) */
+.info-modal.active-flex {
+    display: flex;
+}
+
+/* --- UPDATE PRO SUPPORT STRÁNKU (TMAVÝ MOTIV) --- */
+
+/* 1. Pozadí stránky - stejné jako u Drivers */
+.support-page {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /* Zkopírováno z .drivers-page */
+    background:
+        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(118, 185, 0, 0.02) 40px, rgba(118, 185, 0, 0.02) 41px),
+        repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255, 255, 255, 0.015) 40px, rgba(255, 255, 255, 0.015) 41px),
+        radial-gradient(at 50% 0%, #1a1a1a 0%, #000000 85%);
+    background-attachment: fixed;
+}
+
+/* Zelená záře v pozadí - stejná jako u Drivers */
+.support-page::before {
+    content: '';
+    position: absolute;
+    top: -300px; right: -200px; width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(118,185,0,0.12) 0%, transparent 70%);
+    filter: blur(100px);
+    z-index: 0;
+    opacity: 0.7;
+    animation: subtleGlow 10s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+/* 2. Layout Supportu */
+.support-container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2; /* Aby byl obsah nad září */
+}
+
+.support-header {
+    margin-bottom: 20px;
+    border-left: 4px solid #76b900;
+    padding-left: 20px;
+}
+
+.support-header h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.support-header p, .intro-text p {
+    color: #ccc;
+    font-size: 1rem;
+}
+
+.intro-text {
+    margin-bottom: 40px;
+    padding-left: 24px; /* Zarovnání s textem v headeru */
+}
+
+/* 3. Grid pro karty */
+.support-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* 4. Karty (Support Cards) - využíváme styl .panel-box, ale upravíme výšku */
+.support-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px; /* Aby byly karty stejně vysoké */
+}
+
+.support-card h2 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.support-card p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* 5. Seznam produktů uvnitř karet */
+.product-list {
+    list-style: none;
+    margin-bottom: 30px;
+    flex-grow: 1; /* Roztáhne seznam, aby tlačítko bylo dole */
+}
+
+.product-list li {
+    margin-bottom: 10px;
+}
+
+.product-list a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Jemná linka pod odkazy */
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+.product-list a:hover {
+    color: #76b900;
+    border-bottom-color: #76b900;
+}
+
+/* Tlačítka dole v kartách */
+.action-link {
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* --- JAZYKOVÝ PŘEPÍNAČ V HEADERU (TMAVÝ) --- */
+.header-right-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.language-selector:hover { color: #fff; }
+
+.current-lang::after {
+    content: "▼";
+    font-size: 0.6rem;
+    color: #76b900;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+.language-selector:hover .current-lang::after { content: "▲"; }
+
+/* Dropdown menu - tmavé */
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #1a1a1a; /* Tmavé pozadí */
+    min-width: 140px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    list-style: none;
+    border-radius: 4px;
+    z-index: 1000;
+    padding: 5px 0;
+}
+
+.language-selector:hover .lang-dropdown { display: block; }
+
+.lang-dropdown li a {
+    display: block;
+    padding: 10px 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.lang-dropdown li a:hover {
+    background-color: #333;
+    color: #76b900;
+    padding-left: 25px; /* Jemný posun doprava */
+}
+
+/* Aktivní odkaz v menu */
+.nav-item.active-link {
+    color: #76b900;
+}
+
+/* Responsivita */
+@media screen and (max-width: 768px) {
+    .support-grid { grid-template-columns: 1fr; }
+    .language-selector { display: none; } /* Na mobilu schováme, aby nezabíral místo */
+}
+
+/* Základní nastavení Mega Menu - výchozí stav (skryté) */
+.mega-menu {
+  position: absolute;
+  top: 100%; /* Hned pod navigační lištou */
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  z-index: 100;
+  
+  /* --- ZDE ZAČÍNÁ ANIMACE --- */
+  
+  /* 1. Skryjeme to vizuálně i funkčně */
+  opacity: 0;
+  visibility: hidden;
+  
+  /* 2. Posuneme to trochu nahoru (-20px), aby to mohlo "sjet" dolů */
+  transform: translateY(-20px);
+  
+  /* 3. Nastavíme plynulý přechod pro všechny změny (trvá 0.4 sekundy) */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Stav, když je menu aktivní (např. přidaná třída .open přes JS nebo :hover) */
+.nav-item:hover .mega-menu, /* Příklad pro hover */
+.nav-item.active .mega-menu { /* Příklad pro kliknutí/JS */
+  
+  /* Zobrazíme */
+  opacity: 1;
+  visibility: visible;
+  
+  /* Vrátíme na původní pozici (sjezd dolů) */
+  transform: translateY(0);
+}
+
+/* --- ÚPRAVY PRO MEGA MENU (WRAPPER) --- */
+.nav-item-wrapper {
+    position: relative; /* Důležité: aby menu vyjíždělo pod tímto odkazem */
+    display: inline-block;
+}
+
+/* Styl pro samotné Mega Menu */
+.mega-menu {
+    position: absolute;
+    top: 100%; /* Hned pod odkazem */
+    left: 0;
+    width: 250px; /* Šířka menu */
+    background: #ffffff;
+    color: #333;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-top: 2px solid #76b900;
+    
+    /* Animace */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-align: left;
+}
+
+.mega-menu h3 {
+    font-size: 14px;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.mega-menu .column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mega-menu a {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+}
+
+.mega-menu a:hover {
+    color: #76b900;
+}
+
+/* Třída .open se přidá přes JS */
+.nav-item-wrapper.open .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* --- SPECIFICKÉ STYLY PRO SUPPORT STRÁNKU (.page-support) --- */
+
+/* 1. Tmavé pozadí */
+body.page-support {
+    background-color: #111;
+    color: #fff;
+}
+
+/* 2. Hlavička na stránce (Nadpis + Jazyky) */
+.page-header-row {
+    display: flex;
+    justify-content: space-between; /* Nadpis vlevo, Jazyky vpravo */
+    align-items: flex-start;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+}
+
+.support-header-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.support-header-text {
+    border-left: 4px solid #76b900;
+    padding-left: 20px;
+}
+
+/* 3. Dropdown pro jazyky (Tmavý styl) */
+.page-lang-select .dark-select {
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* 4. Úprava karet pro tmavý režim */
+.page-support .support-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    color: #ddd;
+}
+
+.page-support .product-list li a {
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.page-support .product-list li a:hover {
+    color: #76b900;
+}
+/* --- MEGA MENU (Side-by-Side Layout - DARK & BLUR) --- */
+.nav-item-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.mega-menu {
+    position: absolute;
+    top: 60px;
+    left: -320px;
+    width: 1300px;
+    
+    /* --- TOTO JE ZMĚNA POZADÍ --- */
+    background: rgba(15, 15, 15, 0.9); /* Tmavé, poloprůhledné */
+    backdrop-filter: blur(20px);       /* Efekt rozostření pozadí */
+    -webkit-backdrop-filter: blur(20px); /* Pro Safari */
+    border: 1px solid #333;            /* Jemný rámeček */
+    border-top: 4px solid #76b900;     /* Zelený proužek nahoře */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8); /* Silnější stín */
+    
+    /* Animace */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    display: flex;
+}
+
+/* Rozložení uvnitř menu */
+.mega-grid {
+    display: flex;
+    width: 100%;
+}
+
+/* LEVÝ SLOUPEC (SIDEBAR) */
+.mega-sidebar {
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0.65); /* O něco tmavší než zbytek */
+    padding: 20px 0;
+    border-right: 1px solid #333; /* Tmavá dělící čára */
+}
+
+.sidebar-item {
+    padding: 15px 25px;
+    font-weight: 600;
+    color: #aaa; /* Šedý text neaktivní */
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+    border-left: 4px solid transparent; /* Příprava na zelený proužek */
+}
+
+.sidebar-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Aktivní položka v levém menu */
+.sidebar-item.active {
+    color: #fff;
+    font-weight: bold;
+    border-left: 4px solid #76b900; /* Zelený proužek */
+    background: rgba(255, 255, 255, 0.08); /* Světlejší zvýraznění */
+}
+
+/* PRAVÝ SLOUPEC (OBSAH) */
+.mega-content-area {
+    width: 70%;
+    padding: 30px 40px;
+    background: transparent; /* Průhledné, aby byl vidět blur rodiče */
+}
+
+.industries-menu .mega-content-area {
+    width: 75%;
+}
+
+.content-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.content-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-panel h3 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    color: #fff; /* Bílý nadpis */
+    border-bottom: 2px solid #333; /* Tmavá linka */
+    padding-bottom: 10px;
+}
+
+.panel-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.panel-links1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 sloupce */
+    width: 1150px;
+    gap: 30px; /* Menší mezera */
+}
+
+.link-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.link-group a {
+    color: #fff; /* Bílé odkazy */
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+
+    display: block;
+    width: 100%;
+
+    line-height: 1.15
+}
+.link-group a:hover { color: #76b900; }
+
+.link-group .desc {
+    color: #999; /* Tmavší šedá pro popis */
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Třída .open (přidává JS) */
+.nav-item-wrapper.open .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Responsivita */
+@media screen and (max-width: 1000px) {
+    .mega-menu {
+        width: 100%;
+        left: 0;
+        flex-direction: column;
+        background: #111; /* Na mobilu raději plnou barvu */
+    }
+    .mega-sidebar, .industries-menu .mega-sidebar { width: 100%; display: flex; overflow-x: auto; border-right: none; border-bottom: 1px solid #333; }
+    .mega-content-area, .industries-menu .mega-content-area { width: 100%; }
+    .panel-links, [id^="ind-"] .panel-links { grid-template-columns: 1fr; } /* Na mobilu 1 sloupec */
+}
+
+/* --- DEMO INFO MODAL (VZHLED DLE OBRÁZKU) --- */
+.info-modal {
+    display: none; /* Skryté defaultně */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Tmavé pozadí okolo */
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Třída pro zobrazení (přidává JS) */
+.info-modal.active-flex {
+    display: flex;
+}
+
+.info-modal-content {
+    background-color: #0b0b0b; /* Velmi tmavé, téměř černé pozadí */
+    border: 2px solid #76b900; /* O něco výraznější rámeček (2px) */
+    
+    /* TOTO JE TA OPRAVA GLOW EFEKTU */
+    /* 0 0 = pozice, 40px = rozmazání, 5px = roztažení stínu do dálky, 0.5 = průhlednost */
+    box-shadow: 0 0 40px 5px rgba(118, 185, 0, 0.5);
+    
+    padding: 50px 40px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    color: white;
+    
+    /* Přidáme zpět animaci příletu, vypadá to lépe */
+    animation: popIn Glow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animace pro plynulé zobrazení záře */
+@keyframes popInGlow {
+    0% { opacity: 0; transform: scale(0.9); box-shadow: none; }
+    100% { opacity: 1; transform: scale(1); box-shadow: 0 0 40px 5px rgba(118, 185, 0, 0.5); }
+}
+
+/* Ikona (vykřičník) */
+.info-icon svg {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    stroke: #76b900; /* Zelená barva */
+}
+
+.info-modal-content h2 {
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.info-modal-content p {
+    color: #ccc;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Tlačítko ROZUMÍM */
+.info-ok-btn {
+    background-color: #76b900;
+    color: #000;
+    border: none;
+    padding: 12px 35px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.info-ok-btn:hover {
+    background-color: #fff; /* Při najetí zbělá */
+}
+
+/* Křížek */
+.info-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #888;
+    font-size: 24px;
+    cursor: pointer;
+}
+.info-close-btn:hover { color: #fff; }
+
+/* --- Základní reset pro ukázku --- */
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; margin: 0; }
+
+    /* --- Hlavní navigační lišta (Navbar) --- */
+    .navbar {
+        background-color: #fff; /* Barva pozadí lišty */
+        border-bottom: 1px solid #ddd;
+        position: relative; /* Důležité pro pozicování menu */
+    }
+
+    .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    /* Odkaz v horním menu (Products, Solutions...) */
+    .nav-link {
+        display: block;
+        padding: 20px 30px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .nav-item:hover .nav-link {
+        color: #76b900; /* Hover barva (např. zelená) */
+    }
+
+    /* Zobrazení menu při najetí myši na .nav-item */
+    .nav-item:hover .megamenu {
+        display: flex; /* Změní se na flexbox */
+    }
+
+    /* --- Vnitřní rozložení Mega Menu (Sidebar + Content) --- */
+    
+    /* Levý sloupec (Kategorie) */
+    .mm-sidebar {
+        width: 250px;
+        border-right: 1px solid #eee;
+        padding-right: 20px;
+        flex-shrink: 0;
+    }
+
+    .mm-sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .mm-sidebar li {
+        margin-bottom: 10px;
+    }
+
+    .mm-sidebar a {
+        text-decoration: none;
+        color: #666;
+        display: block;
+        padding: 5px 10px;
+        border-left: 3px solid transparent;
+        font-weight: 500;
+    }
+
+    .mm-sidebar a:hover,
+    .mm-sidebar a.active {
+        color: #000;
+        font-weight: bold;
+        border-left-color: #76b900; /* Zelený proužek vlevo */
+    }
+
+    /* Pravý sloupec (Grid obsahu) */
+    .mm-content {
+        flex-grow: 1;
+        padding-left: 40px;
+    }
+
+    .mm-heading {
+        margin-top: 0;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .mm-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 sloupce vedle sebe */
+        gap: 30px;
+    }
+
+    /* Jednotlivá položka v gridu */
+    .grid-item h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+    }
+    
+    .grid-item h4 a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+    .grid-item h4 a::after {
+        content: " ›";
+        color: #76b900;
+    }
+
+    .grid-item p {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* --- SHOP PAGE STYLES --- */
+
+/* Základní rozložení shopu */
+.shop-main {
+    padding-top: 70px; /* Aby obsah nebyl pod fixním headerem */
+    background-color: #000;
+}
+
+/* Zelený oznamovací pruh */
+.shop-notification-bar {
+    background-color: #76b900;
+    color: #000;
+    padding: 15px 20px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notif-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buy-now-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.buy-now-btn:hover { background-color: #333; }
+
+/* --- NOVÝ HERO CAROUSEL (SLIDER) --- */
+
+/* Hlavní kontejner karuselu */
+.hero-carousel-container {
+    position: relative;
+    /* Zvýšil jsem výšku na 500px, aby to vypadalo lépe */
+    height: 500px; 
+    width: 100%;
+    overflow: hidden; /* Skryje vše, co přeteče */
+    background-color: #000;
+}
+
+/* Wrapper pro snímky */
+.carousel-slides-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* Jednotlivý snímek (Slide) */
+.hero-slide {
+    position: absolute; /* Aby byly naskládané na sobě */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Skryté ve výchozím stavu */
+    opacity: 0; 
+    visibility: hidden;
+    /* Hladký přechod prolínáním (fade effect) */
+    transition: opacity 0.8s ease-in-out, visibility 0.8s;
+    
+    /* Stylování pozadí a obsahu (shodné s původním hero) */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Aktivní snímek - viditelný */
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+/* Obsah snímku (Texty a tlačítko) - zůstává stejné */
+.shop-hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.shop-hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+.shop-hero-btn {
+    background-color: #76b900;
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.shop-hero-btn:hover { background-color: #fff; }
+
+/* --- NAVIGAČNÍ TEČKY (DOTS) --- */
+.carousel-dots {
+    position: absolute;
+    bottom: 30px; /* Umístění odspodu */
+    left: 50%;
+    transform: translateX(-50%); /* Vycentrování na střed */
+    display: flex;
+    gap: 15px; /* Mezera mezi tečkami */
+    z-index: 10;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3); /* Neaktivní tečka (šedoprůhledná) */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Aktivní tečka (Zelená) */
+.dot.active {
+    background-color: #76b900;
+    transform: scale(1.2); /* Aktivní je trochu větší */
+}
+
+/* Responsivita pro mobil */
+@media screen and (max-width: 600px) {
+    .hero-carousel-container { height: 400px; }
+    .shop-hero-content h1 { font-size: 2.2rem; }
+    .shop-hero-content p { font-size: 1.1rem; }
+}
+
+.shop-hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.shop-hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.shop-hero-btn {
+    background-color: #76b900;
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.shop-hero-btn:hover { background-color: #fff; }
+
+/* Kontejner pro produkty */
+.shop-container {
+    max-width: fit-content;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* Nadpisy kategorií vedle sebe */
+.shop-categories-header {
+    display: flex;
+    justify-content: space-around; /* Rozhodí nadpisy nad sloupce */
+    margin-bottom: 30px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
+.shop-categories-header h2 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+/* Grid produktů (4 sloupce) */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 sloupce */
+    gap: 30px;
+}
+
+/* Karta produktu */
+.shop-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    height: 350px; /* Fixní výška karty */
+}
+
+.shop-card:hover {
+    transform: translateY(-5px);
+    border-color: #76b900;
+}
+
+.card-img-wrapper {
+    height: 60%;
+    width: 410px;
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid #333;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shop-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.shop-link {
+    color: #76b900;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+.shop-link:hover { text-decoration: underline; color: #fff; }
+
+/* Training Banner */
+.shop-training-banner {
+    background: linear-gradient(90deg, #1a1a1a 0%, #000 100%);
+    padding: 60px 20px;
+    margin-top: 60px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: center;
+}
+
+.training-content {
+    max-width: 800px;
+    text-align: left;
+}
+
+.training-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.training-content p {
+    color: #ccc;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.training-btn {
+    background-color: #76b900;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.training-btn:hover { background-color: #fff; }
+
+/* Responsivita shopu */
+@media screen and (max-width: 1024px) {
+    .shop-grid { grid-template-columns: repeat(2, 1fr); }
+    .shop-categories-header { flex-direction: column; text-align: center; gap: 10px; }
+}
+
+@media screen and (max-width: 600px) {
+    .shop-grid { grid-template-columns: 1fr; }
+    .shop-hero-content h1 { font-size: 2.5rem; }
+    .notif-content { flex-direction: column; gap: 10px; }
+}
+
+.marketplace-title-section {
+    background-color: #000;
+    padding: 40px 20px 20px; /* Horní odsazení od headeru */
+    max-width: 1400px;
+    margin: 0 auto; /* Vycentrování obsahu, pokud je monitor široký */
+}
+
+.marketplace-title-section h1 {
+    color: #fff;
+    font-size: 2.5rem; /* Velký nadpis */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Úprava pro mobily */
+@media screen and (max-width: 768px) {
+    .marketplace-title-section {
+        padding: 30px 20px 10px;
+        text-align: center; /* Na mobilu vycentrujeme */
+    }
+    .marketplace-title-section h1 {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA | Support</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
+</head>
+<body class="scrollable-page page-support">
+
+    <header class="main-header">
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <img src="logo.png" alt="Nvidia Logo" class="nvidia-logo">
+            <span class="logo-text">NVIDIA</span>
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav class="nav-links">
+            
+            <div class="nav-item-wrapper">
+                <a href="#" class="nav-item">PRODUCTS</a>
+                
+                <div class="mega-menu">
+                     <div class="mega-grid">
+                        <div class="mega-sidebar">
+                            <div class="sidebar-item active" data-tab="prod-cloudServices">Cloud Services</div>
+                            <div class="sidebar-item" data-tab="prod-data">Data Center</div>
+                            <div class="sidebar-item" data-tab="prod-system">Embedded Systems</div>
+                            <div class="sidebar-item" data-tab="prod-gaming">Gaming and Creating</div>
+                            <div class="sidebar-item" data-tab="prod-graphics">Graphics Cards and GPUs</div>
+                            <div class="sidebar-item" data-tab="prod-laptops">Laptops</div>
+                            <div class="sidebar-item" data-tab="prod-networking">Networking</div>
+                            <div class="sidebar-item" data-tab="prod-workstations">Workstations</div>
+                            <div class="sidebar-item" data-tab="prod-software">Software</div>
+                            <div class="sidebar-item" data-tab="prod-tools">Tools</div>
+                        </div>
+
+                        <div class="mega-content-area">
+                            
+                            <div id="prod-cloudServices" class="content-panel active">
+                                <h3>Cloud Services</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="BioNeMo">BioNeMo &rsaquo;</a>
+                                        <span class="desc"><p>AI-driven platform for life sciences research and discovery</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="DGX Cloud">DGX Cloud &rsaquo;</a>
+                                        <span class="desc"><p>Fully managed end-to-end AI platform on leading clouds</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA APIs">NVIDIA APIs &rsaquo;</a>
+                                        <span class="desc"><p>Explore, test, and deploy AI models and agents</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Omniverse Cloud">Omniverse Cloud &rsaquo;</a>
+                                        <span class="desc"><p>Integrate advanced simulation and AI into complex 3D workflows</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Private Registry">Private Registry &rsaquo;</a>
+                                        <span class="desc"><p>Explore, test, and deploy AI models and agents</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA NGC">NVIDIA NGC &rsaquo;</a>
+                                        <span class="desc"><p>Accelerated, containerized AI models and SDKs</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="prod-data" class="content-panel">
+                                <h3>Data Center</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc"><p>Modernizing data centers with AI and accelerated computing</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="DGX Platform">DGX Platform &rsaquo;</a>
+                                        <span class="desc"><p>Enterprise AI factory for model development and deployment</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Grace CPU">Grace CPU &rsaquo;</a>
+                                        <span class="desc"><p>Architecture for data centers that transform data into intelligence</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="HGX Platform">HGX Platform &rsaquo;</a>
+                                        <span class="desc"><p>A supercomputer purpose-built for AI and HPC</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="IGX Platform">IGX Platform &rsaquo;</a>
+                                        <span class="desc"><p>Advanced functional safety and security for edge AI</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="MGX Platform">MGX Platform &rsaquo;</a>
+                                        <span class="desc"><p>Accelerated computing with modular servers</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="OVX Systems">OVX Systems &rsaquo;</a>
+                                        <span class="desc"><p>Scalable data center infrastructure for high-performance AI</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="prod-system" class="content-panel">
+                                <h3>Embedded Systems </h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Jetson">Jetson &rsaquo;</a>
+                                        <span class="desc"><p>Leading platform for autonomous machines and embedded applications</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="DRIVE AGX">DRIVE AGX &rsaquo;</a>
+                                        <span class="desc"><p>Powerful in-vehicle computing for AI-driven autonomous vehicle systems</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Clara AGX">Clara AGX &rsaquo;</a>
+                                        <span class="desc"><p>AI-powered computing for innovative medical devices and imaging</p></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="prod-gaming" class="content-panel">
+                                <h3>Embedded Systems </h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="GeForce">GeForce &rsaquo;</a>
+                                        <span class="desc"><p>Explore graphics cards, gaming solutions, AI technology, and more</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="GeForce Graphics Cards">GeForce Graphics Cards &rsaquo;</a>
+                                        <span class="desc"><p>RTX graphics cards bring game-changing AI capabilities</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Gaming Laptops">Gaming Laptops &rsaquo;</a>
+                                        <span class="desc"><p>Thinnest and longest lasting RTX laptops, optimized by Max-Q</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="G-SYNC Monitors">G-SYNC Monitors &rsaquo;</a>
+                                        <span class="desc"><p>Smooth, tear-free gaming with NVIDIA G-SYNC monitors</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="DLSS">DLSS &rsaquo;</a>
+                                        <span class="desc"><p>Neural rendering tech boosts FPS and enhances image quality</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Reflex">Reflex &rsaquo;</a>
+                                        <span class="desc"><p>Ultimate responsiveness for faster reactions and better aim</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="RTX AI PCs">RTX AI PCs &rsaquo;</a>
+                                        <span class="desc"><p>AI PCs for gaming, creating, productivity and development</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA Studio">NVIDIA Studio &rsaquo;</a>
+                                        <span class="desc"><p>High performance laptops and desktops, purpose-built for creators</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="GeForce NOW Cloud Gaming">GeForce NOW Cloud Gaming &rsaquo;</a>
+                                        <span class="desc"><p>RTX-powered cloud gaming. Choose from 3 memberships</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA App">NVIDIA App &rsaquo;</a>
+                                        <span class="desc"><p>Optimize gaming, streaming, and AI-powered creativity</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA Broadcast App">NVIDIA Broadcast App &rsaquo;</a>
+                                        <span class="desc"><p>AI-enhanced voice and video for next-level streams, videos, and calls</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="SHIELD TV">SHIELD TV &rsaquo;</a>
+                                        <span class="desc"><p>World-class streaming media performance</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="prod-graphics" class="content-panel">
+                                <h3>Embedded Systems </h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Blackwell Architecture">Blackwell Architecture &rsaquo;</a>
+                                        <span class="desc"><p>The engine of the new industrial revolution</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Hopper Architecture">Hopper Architecture &rsaquo;</a>
+                                        <span class="desc"><p>High performance, scalability, and security for every data center</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Ada Lovelace Architecture">Ada Lovelace Architecture &rsaquo;</a>
+                                        <span class="desc"><p>Performance and energy efficiency for endless possibilities</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="GeForce Graphics Cards">GeForce Graphics Cards &rsaquo;</a>
+                                        <span class="desc"><p>RTX graphics cards bring game-changing AI capabilities</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA RTX PRO">NVIDIA RTX PRO &rsaquo;</a>
+                                        <span class="desc"><p>Accelerating professional AI, graphics, rendering and compute workloads</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Virtual GPU">Virtual GPU &rsaquo;</a>
+                                        <span class="desc"><p>Virtual solutions for scalable, high-performance computing</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="prod-laptops" class="content-panel">
+                                <h3>Laptops</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="GeForce Laptops">GeForce Laptops &rsaquo;</a>
+                                        <span class="desc"><p>GPU-powered laptops for gamers and creators</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Studio Laptops">Studio Laptops &rsaquo;</a>
+                                        <span class="desc"><p>High performance laptops purpose-built for creators</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA RTX PRO Laptops">NVIDIA RTX PRO Laptops &rsaquo;</a>
+                                        <span class="desc"><p>Accelerate professional AI and visual computing from anywhere</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="prod-networking" class="content-panel">
+                                <h3>Networking</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc"><p>Accelerated networks for modern workloads</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="DPUs and SuperNICs">DPUs and SuperNICs &rsaquo;</a>
+                                        <span class="desc"><p>Software-defined hardware accelerators for networking, storage, and security</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Ethernet">Ethernet &rsaquo;</a>
+                                        <span class="desc">Ethernet performance, availability, and ease of use across a wide range of applications</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="InfiniBand">InfiniBand &rsaquo;</a>
+                                        <span class="desc"><p>High-performance networking for super computers, AI, and cloud data centers</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Networking Software">Networking Software &rsaquo;</a>
+                                        <span class="desc"><p>Networking software for optimized performance and scalability</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Network Acceleration">Network Acceleration &rsaquo;</a>
+                                        <span class="desc"><p>IO subsystem for modern, GPU-accelerated data centers</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="prod-workstations" class="content-panel">
+                                <h3>Workstations</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc"><p>Accelerating professional AI, graphics, rendering, and compute workloads</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="DGX Spark">DGX Spark &rsaquo;</a>
+                                        <span class="desc"><p>A Grace Blackwell AI Supercomputer on your desk</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="DGX Station">DGX Station &rsaquo;</a>
+                                        <span class="desc"><p>The ultimate desktop AI supercomputer powered by NVIDIA Grace Blackwell</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA RTX PRO AI Workstations">NVIDIA RTX PRO AI Workstations &rsaquo;</a>
+                                        <span class="desc"><p>Accelerate innovation and productivity in AI workflows</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA RTX PRO Desktops">NVIDIA RTX PRO Desktops &rsaquo;</a>
+                                        <span class="desc"><p>Powerful AI, graphics, rendering, and compute workloads</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA RTX PRO Laptops">NVIDIA RTX PRO Laptops &rsaquo;</a>
+                                        <span class="desc"><p>Accelerate professional AI and visual computing from anywhere</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="prod-software" class="content-panel">
+                                <h3>Laptops</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Agentic AI Models - Nemotron">Agentic AI Models - Nemotron &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Agents - NeMo">AI Agents - NeMo &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Blueprints">AI Blueprints &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Inference - Dynamo">AI Inference - Dynamo &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Inference - NIM">AI Inference - NIM &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Microservices - CUDA-X">AI Microservices - CUDA-X &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Automotive - DRIVE">Automotive - DRIVE &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Data Science - Apache Spark">Data Science - Apache Spark &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Data Science - RAPIDS">Data Science - RAPIDS &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Decision Optimization">Decision Optimization - cuOpt &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Healthcare - Clara">Healthcare - Clara &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Industrial AI - Omniverse">Industrial AI - Omniverse &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Intelligent Video Analytics Metropolis">Intelligent Video Analytics Metropolis &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA AI Enterprise">NVIDIA AI Enterprise &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA Mission Control">NVIDIA Mission Control &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA Run:ai">NVIDIA Run:ai &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Physical AI - Cosmos">Physical AI - Cosmos &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Robotics - Isaac">Robotics - Isaac &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Telecommunications - Aerial">Telecommunications - Aerial &rsaquo;</a>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="See All Software">See All Software &rsaquo;</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="prod-tools" class="content-panel">
+                                <h3>Tools </h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Workbench">AI Workbench &rsaquo;</a>
+                                        <span class="desc"><p>Simplify AI development with NVIDIA AI Workbench on GPUs</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="API Catalog">API Catalog &rsaquo;</a>
+                                        <span class="desc"><p>Explore NVIDIA's AI models, blueprints, and tools for developers</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Data Center Management">Data Center Management &rsaquo;</a>
+                                        <span class="desc"><p>AI and HPC software solutions for data center acceleration</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="GPU Monitoring">GPU Monitoring &rsaquo;</a>
+                                        <span class="desc"><p>Monitor and manage GPU performance in cluster environments</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Nsight">Nsight &rsaquo;</a>
+                                        <span class="desc"><p>Explore NVIDIA developer tools for AI, graphics, and HPC</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NGC Catalog">NGC Catalog &rsaquo;</a>
+                                        <span class="desc"><p>Discover GPU-optimized AI, HPC, and data science software</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA App for Laptops">NVIDIA App for Laptops &rsaquo;</a>
+                                        <span class="desc"><p>Optimize enterprise GPU management </p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="NVIDIA NGC">NVIDIA NGC &rsaquo;</a>
+                                        <span class="desc"><p>Accelerate AI and HPC workloads with NVIDIA GPU Cloud solutions</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Desktop Manager">Desktop Manager &rsaquo;</a>
+                                        <span class="desc"><p>Enhance multi-display productivity with NVIDIA RTX Desktop Manager</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="RTX Accelerated Creative Apps">RTX Accelerated Creative Apps &rsaquo;</a>
+                                        <span class="desc"><p>Creative tools and AI-powered apps for artists and designers</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Video Conferencing">Video Conferencing &rsaquo;</a>
+                                        <span class="desc"><p>AI-powered audio and video enhancement</p></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            
+            <a href="shop.html" class="nav-item">SHOP</a>
+
+            <div class="nav-item-wrapper">
+                <a href="#" class="nav-item">INDUSTRIES</a>
+                
+                
+                <div class="mega-menu">
+                     <div class="mega-grid">
+                        <div class="mega-content-area">
+                            <div id="ind-health" class="content-panel active">
+                                <h3>Industries</h3>
+                                <div class="panel-links1">
+                                    <div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Energy">Energy &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Global Public Sector">Global Public Sector &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Retail and CPG">Retail and CPG &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Architecture, Engineering, Construction &amp; Operations">Architecture, Engineering, Construction &amp; Operations &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Financial Services">Financial Services &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Manufacturing">Manufacturing &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Robotics">Robotics &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Automotive">Automotive &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Healthcare and Life Sciences">Healthcare and Life Sciences &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Media and Entertainment">Media and Entertainment &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Smart Cities">Smart Cities &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Cybersecurity">Cybersecurity &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Higher Education">Higher Education &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="US Public Sector">US Public Sector &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Supercomputing">Supercomputing &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Game Development">Game Development &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Restaurants">Restaurants &rsaquo;</a></div>
+<div class="link-group">
+    <a href="#" class="trigger-popup" data-target="Telecommunications">Telecommunications &rsaquo;</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <span class="separator">|</span>
+            
+            <div class="nav-item-wrapper">
+                <a href="#" class="nav-item" id="about-link">SOLUTIONS</a>
+                
+                <div class="mega-menu">
+                    <div class="mega-grid">
+                        <div class="mega-sidebar">
+                            <div class="sidebar-item active" data-tab="sol-ai">Artificial Intelligence</div>
+                            <div class="sidebar-item" data-tab="sol-cloud">Cloud and Data Center</div>
+                            <div class="sidebar-item" data-tab="sol-design">Design and Simulation</div>
+                            <div class="sidebar-item" data-tab="sol-computing">High-Performance Computing</div>
+                            <div class="sidebar-item" data-tab="sol-robotics">Robotics and Edge AI</div>
+                            <div class="sidebar-item" data-tab="sol-auto">Autonomous Vehicles</div>
+                        </div>
+
+                        <div class="mega-content-area">
+                            <div id="sol-ai" class="content-panel active">
+                                <h3>Artificial Intelligence</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc">Add intelligence and efficiency to your business with AI and machine leraning</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Agentic AI">Agentic AI &rsaquo;</a>
+                                        <span class="desc">Build AI agents designed to reason, plan and act</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Data">AI Data &rsaquo;</a>
+                                        <span class="desc">powering a new class of enterprise infrastructure for AI</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Conversational AI">Conversational AI &rsaquo;</a>
+                                        <span class="desc">Enables natural, personalized interactions with real-time speech AI</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Cybersecurity">Cybersecurity &rsaquo;</a>
+                                        <span class="desc">AI-driven solutions to strengthen cybersecurity and AI infrastructure</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Data Science">Data Science &rsaquo;</a>
+                                        <span class="desc">Iterate on large datasets, deploy models more frequently, and lower total cost</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Inference">Inference &rsaquo;</a>
+                                        <span class="desc">Drive breakthrough performance with AI-enabled applications and services</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sol-cloud" class="content-panel">
+                                <h3>Cloud and Data Center</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc">Powering AI, HPC, and modern workloads with NVIDIA</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="AI Data Platform for Enterprise">AI Data Platform for Enterprise &rsaquo;</a>
+                                        <span class="desc">Bringing enterprise storage into the era of agentic AI</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Accelerated Computing">Accelerated Computing &rsaquo;</a>
+                                        <span class="desc">Accelerated computing uses specialized hardware to boost IT performance</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Cloud Computing">Cloud Computing &rsaquo;</a>
+                                        <span class="desc">On-demand IT resources and services, enabling scalability and intelligent insights</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Colocatio">Colocation &rsaquo;</a>
+                                        <span class="desc">Accelerate the scaling of AI across your organization</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="MLOps">MLOps &rsaquo;</a>
+                                        <span class="desc">Accelerate AI with MLOps</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Networking">Networking &rsaquo;</a>
+                                        <span class="desc">High speed ethernet interconnect solutions and services</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Sustainable Computing">Sustainable Computing &rsaquo;</a>
+                                        <span class="desc">Save energy and lower cost with AI and accelerated computing</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Virtualization">Virtualization &rsaquo;</a>
+                                        <span class="desc">NVIDIA virtual GPU software delivers powerful GPU performance</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sol-design" class="content-panel">
+                                <h3>Design and Simulation</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc">Streamline building, operating, and connecting metaverse apps</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Comptuer Aided-Engineering">Comptuer Aided-Engineering &rsaquo;</a>
+                                        <span class="desc">Develop real-time interactive design using AI-accelerated real-time digital twins</span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Digital Twin Development">Digital Twin Development &rsaquo;</a>
+                                        <span class="desc"><p>Harness the power of large-scale, physically-based OpenUSD simulation</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Rendering">Rendering &rsaquo;</a>
+                                        <span class="desc"><p>Bring state-of-the-art rendering to professional workflows</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Robotic Simulation">Robotic Simulation &rsaquo;</a>
+                                        <span class="desc"><p>Innovative solutions to take on your robotics, edge, and vision AI challenges</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Scientific Visualization">Scientific Visualization &rsaquo;</a>
+                                        <span class="desc"><p>Enablies researchers to visualize their large datasets at interactive speeds</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Vehicle Simulation">Vehicle Simulation &rsaquo;</a>
+                                        <span class="desc"><p>AI-defined vehicles are transforming the future of mobility</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Extended Reality">Extended Reality &rsaquo;</a>
+                                        <span class="desc">Transform workflows with immersive, scalable interactions in virtual environments</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sol-computing" class="content-panel">
+                                <h3>High-Performance Computing</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc"><p>Discover NVIDIA’s HPC solutions for AI, simulation, and accelerated computing</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="HPC and AI">HPC and AI &rsaquo;</a>
+                                        <span class="desc"><p>Boost accuracy with GPU-accelerating HPC and AI</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Scientific Visualization">Scientific Visualization &rsaquo;</a>
+                                        <span class="desc"><p>Enables researchers to visualize large datasets at interactive speeds</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Simulation and Modeling">Simulation and Modeling &rsaquo;</a>
+                                        <span class="desc"><p>Accelerate simulation workloads</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Quantum Computing">Quantum Computing &rsaquo;</a>
+                                        <span class="desc"><p>Fast-tracking the advancement of scientific innovations with QPUs</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sol-robotics" class="content-panel">
+                                <h3>Robotics and Edge AI</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc"><p>Innovative solutions to take on robotics, edge, and vision AI challenges</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Robotics">Robotics &rsaquo;</a>
+                                        <span class="desc"><p>GPU-accelerated advances in AI perception, simulation, and software</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Edge AI">Edge AI &rsaquo;</a>
+                                        <span class="desc"><p>Bring the power of NVIDIA AI to the edge for real-time decision-making solutions</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Vision AI">Vision AI &rsaquo;</a>
+                                        <span class="desc">Transform data into valuable insights using vision AI</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sol-auto" class="content-panel">
+                                <h3>Autonomous Vehicles</h3>
+                                <div class="panel-links">
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Overview">Overview &rsaquo;</a>
+                                        <span class="desc"><p>AI-enhanced vehicles are transforming the future of mobility</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Infrastructure">Infrastructure &rsaquo;</a>
+                                        <span class="desc"><p>Essential data center tools for safe autonomous vehicle development</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Simulation">Simulation &rsaquo;</a>
+                                        <span class="desc"><p>Explore high-fidelity sensor simulation for safe autonomous vehicle development</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="In-Vehicle Computing">In-Vehicle Computing &rsaquo;</a>
+                                        <span class="desc"><p>Develop automated driving functions and immersive in-cabin experiences</p></span>
+                                    </div>
+                                    <div class="link-group">
+                                        <a href="#" class="trigger-popup" data-target="Safety">Safety &rsaquo;</a>
+                                        <span class="desc"><p>State-of-the-art system for AV safety, from the cloud to the car</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                     </div>
+                </div>
+            </div>
+            
+            <a href="drivers.html" class="nav-item">DRIVERS</a>
+            <a href="support.html" class="nav-item active-link">SUPPORT</a>
+            
+            <div class="mobile-login-container"></div>
+        </nav>
+
+        <div class="header-right-section desktop-only">
+            <div class="user-action">
+                <button id="authBtn" class="login-btn">LOG IN / JOIN</button>
+                <span id="userNameDisplay" class="hidden"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="support-page">
+        <div class="support-container">
+            
+            <div class="page-header-row">
+                <div class="support-header-text">
+                    <h1 data-i18n="mainTitle">NVIDIA Support</h1>
+                    <p data-i18n="subTitle">Designed to meet the needs of both consumer and enterprise customers.</p>
+                </div>
+                
+                <div class="page-lang-select">
+                    <select id="support-lang" class="dark-select">
+                        <option value="en">English (US)</option>
+                        <option value="cs">Čeština</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="intro-text">
+                <p data-i18n="instructionText">Please select the appropriate option below to learn more about our services and support options.</p>
+            </div>
+
+            <div class="support-grid">
+                <div class="support-card panel-box">
+                    <h2 data-i18n="consumerTitle">Consumer Support</h2>
+                    <p data-i18n="consumerDesc">Find support for products such as:</p>
+                    <ul class="product-list">
+                        <li><a href="#" class="trigger-popup" data-target="GeForce Graphics Cards">GeForce Graphics Cards</a></li>
+                        <li><a href="#" class="trigger-popup" data-target="GeForce NOW">GeForce NOW</a></li>
+                        <li><a href="#" class="trigger-popup" data-target="NVIDIA SHIELD">NVIDIA SHIELD</a></li>
+                        <li><a href="#" class="trigger-popup" data-target="Jetson Kits">Jetson Kits</a></li>
+                    </ul>
+                    <a href="#" class="green-link action-link trigger-popup" data-target="Consumer Options" data-i18n="exploreBtn">Explore Support Options &rsaquo;</a>
+                </div>
+
+                <div class="support-card panel-box">
+                    <h2 data-i18n="enterpriseTitle">Enterprise Support</h2>
+                    <p data-i18n="enterpriseDesc">Find support for enterprise-level products such as:</p>
+                    <ul class="product-list">
+                        <li><a href="#" class="trigger-popup" data-target="NVIDIA DGX Platform">NVIDIA DGX™ Platform</a></li>
+                        <li><a href="#" class="trigger-popup" data-target="NVIDIA AI Enterprise">NVIDIA AI Enterprise</a></li>
+                        <li><a href="#" class="trigger-popup" data-target="NVIDIA Networking">NVIDIA Networking Solutions</a></li>
+                    </ul>
+                    <div class="card-bottom">
+                        <a href="#" class="green-link action-link trigger-popup" data-target="Enterprise Options" data-i18n="exploreBtn">Explore Support Options &rsaquo;</a><br>
+                        <a href="#" class="green-link action-link trigger-popup" data-target="Support Case" data-i18n="fileCaseBtn">File a Support Case &rsaquo;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        
+        <div class="footer-links-grid">
+            <div class="footer-column">
+                <h3>Company Information</h3>
+                <ul>
+                    <li><a href="#" class="trigger-popup">About Us</a></li>
+                    <li><a href="#" class="trigger-popup">Company Overview</a></li>
+                    <li><a href="#" class="trigger-popup">Investors</a></li>
+                    <li><a href="#" class="trigger-popup">Venture Capital (NVentures)</a></li>
+                    <li><a href="#" class="trigger-popup">NVIDIA Foundation</a></li>
+                    <li><a href="#" class="trigger-popup">Research</a></li>
+                    <li><a href="#" class="trigger-popup">Corporate Sustainability</a></li>
+                    <li><a href="#" class="trigger-popup">Technologies</a></li>
+                    <li><a href="#" class="trigger-popup">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>News and Events</h3>
+                <ul>
+                    <li><a href="#" class="trigger-popup">Newsroom</a></li>
+                    <li><a href="#" class="trigger-popup">Company Blog</a></li>
+                    <li><a href="#" class="trigger-popup">Technical Blog</a></li>
+                    <li><a href="#" class="trigger-popup">Webinars</a></li>
+                    <li><a href="#" class="trigger-popup">Stay Informed</a></li>
+                    <li><a href="#" class="trigger-popup">Events Calendar</a></li>
+                    <li><a href="#" class="trigger-popup">GTC AI Conference</a></li>
+                    <li><a href="#" class="trigger-popup">NVIDIA On-Demand</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Popular Links</h3>
+                <ul>
+                    <li><a href="#" class="trigger-popup">Developers</a></li>
+                    <li><a href="#" class="trigger-popup">Partners</a></li>
+                    <li><a href="#" class="trigger-popup">Executive Insights</a></li>
+                    <li><a href="#" class="trigger-popup">Startups and VCs</a></li>
+                    <li><a href="#" class="trigger-popup">NVIDIA Connect for ISVs</a></li>
+                    <li><a href="#" class="trigger-popup">Documentation</a></li>
+                    <li><a href="#" class="trigger-popup">Technical Training</a></li>
+                    <li><a href="#" class="trigger-popup">Professional Services for Data Science</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-interactive">
+            <div class="newsletter-section">
+                <div class="newsletter-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <span class="newsletter-text">Sign Up for NVIDIA News</span>
+                <button class="subscribe-btn trigger-popup">Subscribe</button>
+            </div>
+
+            <div class="social-section">
+                <span>Follow NVIDIA</span>
+                <div class="social-icons">
+    <a href="https://www.facebook.com/NVIDIA" target="_blank" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </a>
+    
+    <a href="https://www.instagram.com/nvidia" target="_blank" class="social-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+    </a>
+    
+    <a href="https://www.linkedin.com/company/nvidia" target="_blank" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </a>
+    
+    <a href="https://x.com/nvidia" target="_blank" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+    </a>
+    
+    <a href="https://www.youtube.com/user/nvidia" target="_blank" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+</div>
+</div>
+        </div>
+
+        <div class="footer-bottom">
+            <img src="logo.png" alt="NVIDIA" class="footer-logo-img">
+            <div class="legal-text">
+                <a href="#" class="trigger-popup">Privacy Policy</a> | 
+                <a href="#" class="trigger-popup">Your Privacy Choices</a> | 
+                <a href="#" class="trigger-popup">Terms of Service</a> | 
+                <a href="#" class="trigger-popup">Accessibility</a> | 
+                <a href="#" class="trigger-popup">Corporate Policies</a> | 
+                <a href="#" class="trigger-popup">Product Security</a> | 
+                <a href="#" class="trigger-popup">Contact</a>
+            </div>
+            <div class="copyright-text">
+                Copyright © 2025 LUKÁŠ RADIMĚŘSKÝ
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('register')">Register</button>
+            </div>
+            <form id="loginForm" class="auth-form active-form">
+                <h2>Welcome Back</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPass" placeholder="Password" required>
+                <button type="submit" class="submit-btn">LOG IN</button>
+                <p id="loginMsg" class="message"></p>
+            </form>
+            <form id="registerForm" class="auth-form">
+                <h2>Create Account</h2>
+                <input type="text" id="regName" placeholder="Username" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPass" placeholder="Password" required>
+                <button type="submit" class="submit-btn">REGISTER</button>
+                <p id="regMsg" class="message"></p>
+            </form>
+        </div>
+    </div>
+
+<div id="infoModal" class="info-modal">
+    <div class="info-modal-content">
+        <span class="info-close-btn">&times;</span>
+        <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+        </div>
+        <h2>DEMO VERZE</h2>
+        <p>Zbytek Informací najdeš v plné verzi stránky</p>
+        <button class="info-ok-btn">ROZUMÍM</button>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
