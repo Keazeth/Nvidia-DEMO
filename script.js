@@ -1,6 +1,84 @@
+/* ======================================================
+   GLOBÁLNÍ FUNKCE (PRO HTML ONCLICK ATRIBUTY)
+   ====================================================== */
+
+// 1. Přepínání mezi záložkami LOGIN a REGISTER v modalu
+function switchTab(tab) {
+    // 1. Odebereme 'active' všem tlačítkům a 'active-form' všem formulářům
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active-form'));
+
+    // 2. Aktivujeme správné
+    if(tab === 'login') {
+        const loginBtn = document.querySelector('.auth-tabs button:first-child');
+        if(loginBtn) loginBtn.classList.add('active');
+        const loginForm = document.getElementById('loginForm');
+        if(loginForm) loginForm.classList.add('active-form');
+    } else {
+        const regBtn = document.querySelector('.auth-tabs button:last-child');
+        if(regBtn) regBtn.classList.add('active');
+        const regForm = document.getElementById('registerForm');
+        if(regForm) regForm.classList.add('active-form');
+    }
+}
+
+// 2. Kontrola stavu přihlášení (Spouští se při startu a po akcích)
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const storedUser = JSON.parse(localStorage.getItem('nvidiaUser'));
+    
+    // Tlačítko v hlavičce
+    const authBtns = document.querySelectorAll("#authBtn"); // Může být více (desktop/mobile)
+    const nameDisplays = document.querySelectorAll("#userNameDisplay");
+
+    authBtns.forEach(btn => {
+        if (isLoggedIn && storedUser) {
+            btn.innerText = "LOG OUT";
+            btn.style.backgroundColor = "#333";
+            btn.style.color = "#fff";
+            
+            // Po kliknutí na LOG OUT odhlásit
+            btn.onclick = function() {
+                localStorage.removeItem("isLoggedIn");
+                checkLoginStatus(); // Refresh UI
+                alert("You have been logged out.");
+            };
+        } else {
+            btn.innerText = "LOG IN / JOIN";
+            btn.style.backgroundColor = "#76b900";
+            btn.style.color = "#000";
+            
+            // Po kliknutí otevřít modal
+            btn.onclick = function() {
+                const modal = document.getElementById("authModal");
+                if(modal) modal.style.display = "flex"; // Používáme flex pro centrování
+            };
+        }
+    });
+
+    // Zobrazení jména
+    nameDisplays.forEach(display => {
+        if (isLoggedIn && storedUser) {
+            display.classList.remove("hidden");
+            display.innerText = "Hi, " + storedUser.name;
+            display.style.color = "#76b900";
+            display.style.fontWeight = "bold";
+            display.style.marginRight = "15px";
+        } else {
+            display.classList.add("hidden");
+        }
+    });
+}
+
+/* ======================================================
+   HLAVNÍ LOGIKA PO NAČTENÍ STRÁNKY
+   ====================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. RESPONSIVE MENU ---
+    // Spustit kontrolu přihlášení hned po načtení
+    checkLoginStatus();
+
+    // --- 1. RESPONSIVE MENU (HAMBURGER) ---
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
 
@@ -11,32 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. MEGA MENU LOGIKA (UNIVERZÁLNÍ PRO VÍCE MENU) ---
-    // Najdeme všechny wrappery, které mají v sobě mega menu
+    // --- 2. MEGA MENU LOGIKA (DESKTOP & MOBILE) ---
     const menuWrappers = document.querySelectorAll('.nav-item-wrapper');
 
     menuWrappers.forEach(wrapper => {
-        const triggerLink = wrapper.querySelector('.nav-item'); // Odkaz (Products, Solutions...)
-        const megaMenu = wrapper.querySelector('.mega-menu');   // To rozbalovací okno
-
-        if (triggerLink && megaMenu) {
-            // Kliknutí na odkaz otevře/zavře toto konkrétní menu
+        const triggerLink = wrapper.querySelector('.nav-item');
+        
+        if (triggerLink) {
             triggerLink.addEventListener('click', (e) => {
+                // Zabraň prokliku, pokud to má otevírat menu
                 e.preventDefault();
                 e.stopPropagation();
 
-                // Pokud klikám na menu, zavřu všechna OSTATNÍ otevřená menu
+                // Zavřít ostatní otevřená menu
                 menuWrappers.forEach(w => {
                     if (w !== wrapper) w.classList.remove('open');
                 });
 
-                // Přepnu stav tohoto menu
+                // Přepnout stav aktuálního menu
                 wrapper.classList.toggle('open');
             });
         }
     });
 
-    // Kliknutí jinam zavře všechna menu
+    // Zavření menu kliknutím vedle
     document.addEventListener('click', (e) => {
         menuWrappers.forEach(wrapper => {
             if (!wrapper.contains(e.target)) {
@@ -45,45 +121,140 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
-    // --- 2b. PŘEPÍNÁNÍ ZÁLOŽEK (TABŮ) UVNITŘ MENU ---
+    // --- 3. PŘEPÍNÁNÍ ZÁLOŽEK UVNITŘ MEGA MENU ---
     const sidebarItems = document.querySelectorAll('.sidebar-item');
-
     if (sidebarItems.length > 0) {
         sidebarItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.stopPropagation(); // Aby se menu nezavřelo
-
-                // Najdeme rodičovské Mega Menu, ve kterém jsme klikli
+                
                 const parentMenu = item.closest('.mega-menu');
                 if (!parentMenu) return;
 
-                // Uvnitř tohoto menu najdeme všechny položky a panely
-                const siblings = parentMenu.querySelectorAll('.sidebar-item');
-                const contentPanels = parentMenu.querySelectorAll('.content-panel');
-
-                // 1. Deaktivovat ostatní položky v sidebaru (jen v tomto menu)
-                siblings.forEach(i => i.classList.remove('active'));
-                // 2. Aktivovat kliknutou
+                // Deaktivovat ostatní v sidebaru
+                parentMenu.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
 
-                // 3. Zjistit cíl (ID panelu)
+                // Zobrazit obsahový panel
                 const targetId = item.getAttribute('data-tab');
-
-                // 4. Skrýt všechny panely (jen v tomto menu)
-                contentPanels.forEach(panel => panel.classList.remove('active'));
-
-                // 5. Zobrazit ten správný (hledáme ho globálně podle ID, nebo uvnitř)
-                // Poznámka: ID panelů musí být na stránce unikátní!
-                const targetPanel = document.getElementById(targetId);
-                if (targetPanel) {
-                    targetPanel.classList.add('active');
+                parentMenu.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+                
+                // Hledáme panel uvnitř stejného menu
+                const targetPanel = parentMenu.querySelector(`#${targetId}`);
+                // Pokud není uvnitř (někdy bývá globálně podle ID), zkusíme document
+                const finalPanel = targetPanel || document.getElementById(targetId);
+                
+                if (finalPanel) {
+                    finalPanel.classList.add('active');
                 }
             });
         });
     }
 
-    // --- 3. ANIMACE TEXTU (HERO) ---
+    // --- 4. FORMULÁŘE - REGISTRACE A PŘIHLÁŠENÍ ---
+    
+    // a) Registrace
+    const regForm = document.getElementById('registerForm');
+    if (regForm) {
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const pass = document.getElementById('regPass').value;
+            const msg = document.getElementById('regMsg');
+
+            if(name && email && pass) {
+                // Uložit uživatele
+                const user = { name: name, email: email, pass: pass };
+                localStorage.setItem('nvidiaUser', JSON.stringify(user));
+                
+                // OKAMŽITÉ PŘIHLÁŠENÍ PO REGISTRACI
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                // Reset formuláře
+                regForm.reset();
+                
+                // Zavřít modal
+                document.getElementById('authModal').style.display = 'none';
+                
+                // Aktualizovat UI
+                checkLoginStatus();
+                
+                alert("Registration Successful! You are now logged in.");
+            } else {
+                msg.innerText = "Please fill all fields.";
+            }
+        });
+    }
+
+    // b) Přihlášení
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            const msg = document.getElementById('loginMsg');
+            
+            const storedUser = JSON.parse(localStorage.getItem('nvidiaUser'));
+
+            if (storedUser && email === storedUser.email && pass === storedUser.pass) {
+                localStorage.setItem('isLoggedIn', 'true');
+                loginForm.reset();
+                document.getElementById('authModal').style.display = 'none';
+                checkLoginStatus();
+                alert("Welcome back, " + storedUser.name + "!");
+            } else {
+                msg.innerText = "Invalid credentials or no account found.";
+                msg.style.color = "red";
+            }
+        });
+    }
+
+    // Zavírání modalu křížkem
+    const closeBtns = document.querySelectorAll('.close-btn');
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.getElementById('authModal').style.display = 'none';
+        });
+    });
+
+    // --- 5. INFO POPUP (DEMO) ---
+    const infoModal = document.getElementById('infoModal');
+    const infoCloseBtns = document.querySelectorAll('.info-close-btn, .info-ok-btn');
+    const triggers = document.querySelectorAll('.trigger-popup');
+
+    if (infoModal) {
+        triggers.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Ignorovat social linky
+                if (btn.closest('.social-icons') || btn.classList.contains('social-link')) return;
+                
+                e.preventDefault();
+                infoModal.style.display = 'flex'; // Flex pro centrování
+                
+                // Zavřít menu, pokud je otevřené
+                menuWrappers.forEach(w => w.classList.remove('open'));
+            });
+        });
+
+        infoCloseBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                infoModal.style.display = 'none';
+            });
+        });
+    }
+
+    // Zavření při kliknutí mimo okno
+    window.addEventListener('click', (e) => {
+        const authModal = document.getElementById('authModal');
+        if (e.target == authModal) authModal.style.display = 'none';
+        if (e.target == infoModal) infoModal.style.display = 'none';
+    });
+
+    // --- 6. ANIMACE TEXTU (HERO) ---
     const titleParts = document.querySelectorAll(".reveal-text");
     const subtitle = document.querySelector(".hero-subtitle");
     if(titleParts.length > 0) {
@@ -93,208 +264,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     }
 
-    // --- 4. LOGIN LOGIKA ---
-    const authModal = document.getElementById("authModal");
-    const authBtn = document.getElementById("authBtn");
-    const closeAuth = document.querySelector(".close-btn");
-
-    if (authBtn) {
-        authBtn.onclick = function() {
-            if(localStorage.getItem("isLoggedIn") === "true") {
-                localStorage.removeItem("isLoggedIn");
-                checkLoginStatus();
-                alert("You have been logged out.");
-            } else {
-                authModal.style.display = "block";
-            }
-        }
-    }
-    if (closeAuth) closeAuth.onclick = function() { authModal.style.display = "none"; }
-    window.onclick = function(event) {
-        if (event.target == authModal) authModal.style.display = "none";
-    }
-    checkLoginStatus();
-
-    // --- 5. POPUP DEMO VERZE ---
-    const infoModal = document.getElementById('infoModal');
-    const closeInfoBtn = document.querySelector('.info-close-btn');
-    const okInfoBtn = document.querySelector('.info-ok-btn');
-    const triggers = document.querySelectorAll('.trigger-popup');
-
-    if (infoModal) {
-        triggers.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                if (btn.closest('.social-icons') || btn.classList.contains('social-link')) {
-                    return; 
-                }
-
-                e.preventDefault();
-                infoModal.style.display = 'flex';
-                
-                // Zavřít všechna otevřená mega menu
-                menuWrappers.forEach(w => w.classList.remove('open'));
-            });
-        });
-
-        function closePopup() {
-            infoModal.style.display = 'none';
-        }
-
-        if (closeInfoBtn) closeInfoBtn.addEventListener('click', closePopup);
-        if (okInfoBtn) okInfoBtn.addEventListener('click', closePopup);
-        
-        window.addEventListener('click', (e) => {
-            if (e.target == infoModal) closePopup();
-        });
-    }
-
-    // --- 6. PŘEKLAD JAZYKŮ ---
-    const langSelect = document.getElementById('support-lang');
-    
-    const translations = {
-        en: {
-            mainTitle: "NVIDIA Support",
-            subTitle: "Designed to meet the needs of both consumer and enterprise customers.",
-            instructionText: "Please select the appropriate option below to learn more about our services and support options.",
-            consumerTitle: "Consumer Support",
-            consumerDesc: "Find support for products such as:",
-            exploreBtn: "Explore Support Options ›",
-            enterpriseTitle: "Enterprise Support",
-            enterpriseDesc: "Find support for enterprise-level products such as:",
-            fileCaseBtn: "File a Support Case ›"
-        },
-        cs: {
-            mainTitle: "Podpora NVIDIA",
-            subTitle: "Navrženo tak, aby vyhovovalo potřebám spotřebitelů i firemních zákazníků.",
-            instructionText: "Níže vyberte vhodnou možnost, abyste se dozvěděli více o našich službách a možnostech podpory.",
-            consumerTitle: "Zákaznická podpora",
-            consumerDesc: "Najděte podporu pro produkty jako:",
-            exploreBtn: "Prozkoumat možnosti podpory ›",
-            enterpriseTitle: "Firemní podpora",
-            enterpriseDesc: "Najděte podporu pro podniková řešení jako:",
-            fileCaseBtn: "Založit případ podpory ›"
-        },
-        de: {
-            mainTitle: "NVIDIA Support",
-            subTitle: "Entwickelt, um die Anforderungen von Privat- und Unternehmenskunden zu erfüllen.",
-            instructionText: "Bitte wählen Sie unten die entsprechende Option aus, um mehr über unsere Dienste zu erfahren.",
-            consumerTitle: "Verbraucher-Support",
-            consumerDesc: "Unterstützung für Produkte wie:",
-            exploreBtn: "Support-Optionen ansehen ›",
-            enterpriseTitle: "Unternehmens-Support",
-            enterpriseDesc: "Unterstützung für Unternehmensprodukte wie:",
-            fileCaseBtn: "Support-Fall erstellen ›"
-        }
-    };
-
-    if (langSelect) {
-        langSelect.addEventListener('change', (e) => {
-            const selectedLang = e.target.value;
-            const content = translations[selectedLang];
-
-            if (content) {
-                document.querySelectorAll('[data-i18n]').forEach(element => {
-                    const key = element.getAttribute('data-i18n');
-                    if (content[key]) {
-                        element.innerText = content[key];
-                    }
-                });
-            }
-        });
-    }
-
-    // --- 7. SHOP CAROUSEL (SLIDER) ---
-    // Zkontrolujeme, zda jsme na stránce shopu a zda existuje karusel
+    // --- 7. SHOP CAROUSEL ---
     const carouselContainer = document.querySelector('.hero-carousel-container');
-    
     if (carouselContainer) {
         const slides = document.querySelectorAll('.hero-slide');
         const dots = document.querySelectorAll('.dot');
-        const slideInterval = 10000; // 10 sekund (v milisekundách)
+        const slideInterval = 8000;
         let currentSlide = 0;
         let autoSlideTimer;
 
-        // Funkce pro zobrazení konkrétního snímku
         function goToSlide(index) {
-            // Ošetření indexu (aby se točilo dokola)
             if (index >= slides.length) index = 0;
             if (index < 0) index = slides.length - 1;
-
-            // 1. Odstranit 'active' třídu ze všech snímků a teček
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-
-            // 2. Přidat 'active' třídu novému snímku a tečce
+            
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
             slides[index].classList.add('active');
             dots[index].classList.add('active');
-            
-            // 3. Aktualizovat aktuální index
             currentSlide = index;
         }
 
-        // Funkce pro automatický posun na další snímek
-        function nextSlideAuto() {
-            goToSlide(currentSlide + 1);
-        }
+        function nextSlide() { goToSlide(currentSlide + 1); }
 
-        // Spuštění automatického časovače
         function startTimer() {
-            // Pro jistotu nejprve vyčistíme předchozí interval
-            if (autoSlideTimer) clearInterval(autoSlideTimer);
-            autoSlideTimer = setInterval(nextSlideAuto, slideInterval);
+            if(autoSlideTimer) clearInterval(autoSlideTimer);
+            autoSlideTimer = setInterval(nextSlide, slideInterval);
         }
 
-        // Zastavení časovače (při manuální interakci)
-        function stopTimer() {
-            if (autoSlideTimer) clearInterval(autoSlideTimer);
-        }
-
-        // --- EVENT LISTENERS ---
-
-        // Kliknutí na tečky
         dots.forEach(dot => {
             dot.addEventListener('click', (e) => {
-                stopTimer(); // Zastavíme automatiku, když uživatel klikne
+                clearInterval(autoSlideTimer);
                 const index = parseInt(e.target.getAttribute('data-index'));
                 goToSlide(index);
-                startTimer(); // Po kliknutí znovu spustíme časovač
+                startTimer();
             });
         });
 
-        // Spustíme to celé na začátku
         startTimer();
     }
 });
-
-// Helpery
-function switchTab(tab) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active-form'));
-    if(tab === 'login') {
-        document.querySelectorAll('.tab-btn')[0].classList.add('active');
-        document.getElementById('loginForm').classList.add('active-form');
-    } else {
-        document.querySelectorAll('.tab-btn')[1].classList.add('active');
-        document.getElementById('registerForm').classList.add('active-form');
-    }
-}
-
-function checkLoginStatus() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    const storedUser = JSON.parse(localStorage.getItem('nvidiaUser'));
-    const btn = document.getElementById("authBtn");
-    const nameDisplay = document.getElementById("userNameDisplay");
-
-    if(btn && isLoggedIn && storedUser) {
-        btn.innerText = "LOG OUT";
-        btn.style.backgroundColor = "#333";
-        btn.style.color = "#fff";
-        nameDisplay.classList.remove("hidden");
-        nameDisplay.innerText = "Hi, " + storedUser.name;
-    } else if (btn) {
-        btn.innerText = "LOG IN / JOIN";
-        btn.style.backgroundColor = "#76b900";
-        btn.style.color = "#000";
-        if(nameDisplay) nameDisplay.classList.add("hidden");
-    }
-}

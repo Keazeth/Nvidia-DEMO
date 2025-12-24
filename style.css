@@ -676,29 +676,76 @@ body {
     }
 }
 
-/* --- OPRAVA MODÁLNÍHO OKNA --- */
 .modal {
-    display: none; /* TOTO JE KLÍČOVÉ - musí být skryté */
-    position: fixed; 
-    z-index: 2000; /* Musí být hodně vysoké číslo, aby bylo nad vším */
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0,0,0,0.8);
-    backdrop-filter: blur(5px);
+    display: none; /* Defaultně skryté */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    
+    /* FLEXBOX CENTROVÁNÍ */
+    justify-content: center;
+    align-items: center;
 }
 
-/* Ujistíme se, že obsah modalu je vycentrovaný */
+/* Třída, kterou přidáme přes JS pro zobrazení */
+.modal.active-flex {
+    display: flex;
+}
+
 .modal-content {
     background-color: #1a1a1a;
-    margin: 10% auto; /* 10% od vrchu, auto = střed vodorovně */
     padding: 40px;
-    border: 1px solid #333;
-    width: 350px;
+    border: 1px solid #76b900; /* Zelený rámeček */
+    width: 90%;
+    max-width: 400px; /* Maximální šířka */
     position: relative;
     text-align: center;
-    box-shadow: 0 0 30px rgba(118,185,0,0.2);
+    box-shadow: 0 0 50px rgba(118,185,0,0.3);
+    margin: 0; /* Margin auto už není potřeba díky flexboxu */
+    border-radius: 8px;
+}
+
+/* Oprava křížku (Zavírání) */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #888;
+    font-size: 35px; /* Větší */
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
+/* Vylepšení inputů */
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    border: 1px solid #444;
+    color: white;
+    outline: none;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.auth-form input:focus {
+    border-color: #76b900;
+}
+
+.submit-btn {
+    width: 100%;
+    border-radius: 4px;
 }
 
 
@@ -1030,62 +1077,126 @@ body {
   transform: translateY(0);
 }
 
-/* --- ÚPRAVY PRO MEGA MENU (WRAPPER) --- */
 .nav-item-wrapper {
-    position: relative; /* Důležité: aby menu vyjíždělo pod tímto odkazem */
-    display: inline-block;
+    position: static; /* ZMĚNA: Static, aby se menu neřídilo podle odkazu, ale podle okna */
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-/* Styl pro samotné Mega Menu */
-.mega-menu {
-    position: absolute;
-    top: 100%; /* Hned pod odkazem */
-    left: 0;
-    width: 250px; /* Šířka menu */
-    background: #ffffff;
-    color: #333;
-    padding: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    border-top: 2px solid #76b900;
+/* Desktop verze Mega Menu - Vycentrovaná na střed obrazovky */
+.mega-menu, .mega-menu.industries-menu {
+    position: fixed; /* Fixní pozice vůči oknu prohlížeče */
+    top: 70px;       /* Hned pod hlavičkou */
+    left: 50%;       /* Start na polovině obrazovky */
+    transform: translateX(-50%) translateY(-20px); /* Posun zpět o polovinu šířky = přesný střed */
     
-    /* Animace */
+    width: 90%;      /* Šířka 90% obrazovky (responzivní) */
+    max-width: 1400px; /* Maximální šířka, aby to nebylo obří */
+    height: auto;
+    max-height: 80vh; /* Aby se vešlo na výšku */
+    overflow-y: auto; /* Pokud je obsah moc dlouhý, roluje se */
+    
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid #333;
+    border-top: 4px solid #76b900;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+    
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
     transition: all 0.3s ease;
-    z-index: 1000;
-    text-align: left;
-}
-
-.mega-menu h3 {
-    font-size: 14px;
-    color: #888;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.mega-menu .column {
+    z-index: 1001;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    border-radius: 0 0 8px 8px;
 }
 
-.mega-menu a {
-    color: black;
-    text-decoration: none;
-    font-size: 14px;
-    display: block;
-}
-
-.mega-menu a:hover {
-    color: #76b900;
-}
-
-/* Třída .open se přidá přes JS */
+/* Stav otevřeno */
 .nav-item-wrapper.open .mega-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0); /* Sjezd dolů */
+}
+
+/* MOBILNÍ VERZE MEGA MENU (Do 1024px) */
+@media screen and (max-width: 1024px) {
+    .nav-item-wrapper {
+        position: relative; /* Na mobilu chceme relativní pozici */
+        width: 100%;
+        display: block;
+    }
+
+    .nav-item {
+        display: block;
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mega-menu, .mega-menu.industries-menu {
+        position: static; /* Menu nebude plavat, ale bude součástí seznamu */
+        width: 100%;
+        max-width: 100%;
+        transform: none !important; /* Zrušíme centrování */
+        opacity: 1; /* Viditelnost řídí display: none/block */
+        visibility: visible;
+        display: none; /* Defaultně skryto */
+        background: #111;
+        border: none;
+        box-shadow: none;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    /* Když je wrapper otevřený, zobrazíme menu */
+    .nav-item-wrapper.open .mega-menu {
+        display: flex;
+        animation: slideDown 0.3s ease;
+    }
+
+    .mega-grid { flex-direction: column; }
+    
+    /* Sidebar na mobilu - horizontální scroll */
+    .mega-sidebar, .industries-menu .mega-sidebar {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+        background: #222;
+        border-right: none;
+        border-bottom: 1px solid #444;
+    }
+
+    .sidebar-item {
+        padding: 10px 20px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    
+    .sidebar-item.active {
+        border-left: none;
+        border-bottom: 3px solid #76b900;
+        background: transparent;
+    }
+
+    /* Obsah na mobilu */
+    .mega-content-area, .industries-menu .mega-content-area {
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Grid odkazů na mobilu - 1 sloupec */
+    .panel-links, .panel-links1, [id^="ind-"] .panel-links {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 
